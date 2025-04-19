@@ -1,203 +1,203 @@
 <!DOCTYPE html>
 <!-- Everything below is created with Generative AI -->
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Math Practice</title>
-          <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#111827">
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('Service Worker registered ✔️'))
-          .catch(err => console.error('Service Worker error:', err));
-      });
-    }
-  </script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Math Practice</title>
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#111827">
+        <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registered ✔️'))
+                    .catch(err => console.error('Service Worker error:', err));
+            });
+        }
+        </script>
         <style>
-    body {
-      font-family: sans-serif;
-      background-color: #111827;
-      color: #f9fafb;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .card {
-      background: #1f2937;
-      padding: 2rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      max-width: 360px;
-      width: 100%;
-      text-align: center;
-    }
-    .card h1 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .settings-toggle {
-      background: none;
-      border: none;
-      color: #f9fafb;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-bottom: 1rem;
-    }
-    .settings-panel {
-      display: none;
-      flex-direction: column;
-      margin-bottom: 1rem;
-    }
-    .settings-panel.active {
-      display: flex;
-    }
-    select, input {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid #4b5563;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      background-color: #111827;
-      color: #f9fafb;
-    }
-    .question {
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
-    }
-    button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #3b82f6;
-      color: white;
-      font-size: 1rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-    }
-    .feedback {
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.75rem;
-      text-align: center;
-      color: #9ca3af;
-      max-width: 360px;
-      padding: 1rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h1>Math Practice</h1>
-    <button class="settings-toggle" onclick="toggleSettings()">⚙️ Settings</button>
-    <div class="settings-panel" id="settingsPanel">
-      <select id="operation" onchange="generateQuestion()">
-        <option value="*">Multiplication</option>
-        <option value="+">Addition</option>
-        <option value="-">Subtraction</option>
-        <option value="/">Division</option>
-      </select>
-      <input type="number" id="minValue" placeholder="Minimum value" value="1" onchange="generateQuestion()" />
-      <input type="number" id="maxValue" placeholder="Maximum value" value="10" onchange="generateQuestion()" />
-      <input type="number" id="numOperands" placeholder="Number of values (2 or more)" value="2" min="2" onchange="generateQuestion()" />
-    </div>
-    <div class="question" id="question"></div>
-    <input type="number" id="answer" placeholder="Type your answer here" onkeydown="if(event.key === 'Enter') checkAnswer()" />
-    <button onclick="checkAnswer()">Check Answer</button>
-    <div class="feedback" id="feedback"></div>
-  </div>
-  <footer class="footer">
-    🤖💩 This app is licensed under the <strong>AI-Generated Slopware License</strong> (AIGSL v0.0001-alpha-chaos-edition). Use at your own whim and/or peril.
-  </footer>
-  <script>
-    let numbers = [], currentOperation = '*';
+        body {
+            font-family: sans-serif;
+            background-color: #111827;
+            color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #1f2937;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+        }
+        .card h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .settings-toggle {
+            background: none;
+            border: none;
+            color: #f9fafb;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        .settings-panel {
+            display: none;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+        .settings-panel.active {
+            display: flex;
+        }
+        select, input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #4b5563;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background-color: #111827;
+            color: #f9fafb;
+        }
+        .question {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #3b82f6;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        .feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #9ca3af;
+            max-width: 360px;
+            padding: 1rem;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>Math Practice</h1>
+            <button class="settings-toggle" onclick="toggleSettings()">⚙️ Settings</button>
+            <div class="settings-panel" id="settingsPanel">
+                <select id="operation" onchange="generateQuestion()">
+                    <option value="*">Multiplication</option>
+                    <option value="+">Addition</option>
+                    <option value="-">Subtraction</option>
+                    <option value="/">Division</option>
+                </select>
+                <input type="number" id="minValue" placeholder="Minimum value" value="1" onchange="generateQuestion()" />
+                <input type="number" id="maxValue" placeholder="Maximum value" value="10" onchange="generateQuestion()" />
+                <input type="number" id="numOperands" placeholder="Number of values (2 or more)" value="2" min="2" onchange="generateQuestion()" />
+            </div>
+            <div class="question" id="question"></div>
+            <input type="number" id="answer" placeholder="Type your answer here" onkeydown="if(event.key === 'Enter') checkAnswer()" />
+            <button onclick="checkAnswer()">Check Answer</button>
+            <div class="feedback" id="feedback"></div>
+        </div>
+        <footer class="footer">
+            🤖💩 This app is licensed under the <strong>AI-Generated Slopware License</strong> (AIGSL v0.0001-alpha-chaos-edition). Use at your own whim and/or peril.
+        </footer>
+        <script>
+        let numbers = [], currentOperation = '*';
 
-    function toggleSettings() {
-      const panel = document.getElementById("settingsPanel");
-      panel.classList.toggle("active");
-    }
-
-    function randomInRange(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function generateQuestion() {
-      currentOperation = document.getElementById("operation").value;
-      const min = parseInt(document.getElementById("minValue").value) || 1;
-      const max = parseInt(document.getElementById("maxValue").value) || 10;
-      const numOperands = Math.max(2, parseInt(document.getElementById("numOperands").value) || 2);
-
-      numbers = [];
-
-      if (currentOperation === '/') {
-        let result = randomInRange(min, max);
-        let divisor = randomInRange(min, max);
-        let dividend = result;
-
-        for (let i = 1; i < numOperands; i++) {
-          dividend *= divisor;
-          numbers.push(divisor);
-          divisor = randomInRange(min, max);
+        function toggleSettings() {
+            const panel = document.getElementById("settingsPanel");
+            panel.classList.toggle("active");
         }
 
-        numbers.unshift(dividend);
-      } else {
-        for (let i = 0; i < numOperands; i++) {
-          numbers.push(randomInRange(min, max));
+        function randomInRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-      }
 
-      document.getElementById("question").textContent = `What is ${numbers.join(` ${currentOperation} `)}?`;
-      document.getElementById("answer").value = "";
-      document.getElementById("feedback").textContent = "";
-    }
+        function generateQuestion() {
+            currentOperation = document.getElementById("operation").value;
+            const min = parseInt(document.getElementById("minValue").value) || 1;
+            const max = parseInt(document.getElementById("maxValue").value) || 10;
+            const numOperands = Math.max(2, parseInt(document.getElementById("numOperands").value) || 2);
 
-    function checkAnswer() {
-      const answerField = document.getElementById("answer");
-      const answerValue = answerField.value.trim();
+            numbers = [];
 
-      if (answerValue === "") return;
+            if (currentOperation === '/') {
+                let result = randomInRange(min, max);
+                let divisor = randomInRange(min, max);
+                let dividend = result;
 
-      const userAnswer = parseFloat(answerValue);
-      let correct;
-      switch (currentOperation) {
-        case '+':
-          correct = numbers.reduce((a, b) => a + b);
-          break;
-        case '-':
-          correct = numbers.reduce((a, b) => a - b);
-          break;
-        case '*':
-          correct = numbers.reduce((a, b) => a * b);
-          break;
-        case '/':
-          correct = numbers.reduce((a, b) => a / b);
-          break;
-      }
+                for (let i = 1; i < numOperands; i++) {
+                    dividend *= divisor;
+                    numbers.push(divisor);
+                    divisor = randomInRange(min, max);
+                }
 
-      const feedback = document.getElementById("feedback");
-      if (Math.abs(userAnswer - correct) < 0.01) {
-        feedback.textContent = "Correct! ✅";
-        feedback.style.color = "#10b981";
-      } else {
-        feedback.textContent = `Wrong! The correct answer is ${correct}`;
-        feedback.style.color = "#ef4444";
-      }
+                numbers.unshift(dividend);
+            } else {
+                for (let i = 0; i < numOperands; i++) {
+                    numbers.push(randomInRange(min, max));
+                }
+            }
 
-      setTimeout(generateQuestion, 1500);
-    }
+            document.getElementById("question").textContent = `What is ${numbers.join(` ${currentOperation} `)}?`;
+            document.getElementById("answer").value = "";
+            document.getElementById("feedback").textContent = "";
+        }
 
-    generateQuestion();
-  </script>
+        function checkAnswer() {
+            const answerField = document.getElementById("answer");
+            const answerValue = answerField.value.trim();
 
-</body>
+            if (answerValue === "") return;
+
+            const userAnswer = parseFloat(answerValue);
+            let correct;
+            switch (currentOperation) {
+                case '+':
+                    correct = numbers.reduce((a, b) => a + b);
+                    break;
+                case '-':
+                    correct = numbers.reduce((a, b) => a - b);
+                    break;
+                case '*':
+                    correct = numbers.reduce((a, b) => a * b);
+                    break;
+                case '/':
+                    correct = numbers.reduce((a, b) => a / b);
+                    break;
+            }
+
+            const feedback = document.getElementById("feedback");
+            if (Math.abs(userAnswer - correct) < 0.01) {
+                feedback.textContent = "Correct! ✅";
+                feedback.style.color = "#10b981";
+            } else {
+                feedback.textContent = `Wrong! The correct answer is ${correct}`;
+                feedback.style.color = "#ef4444";
+            }
+
+            setTimeout(generateQuestion, 1500);
+        }
+
+        generateQuestion();
+        </script>
+
+    </body>
 </html>
