@@ -1,6 +1,6 @@
 {
-  "name": "Tulltabellen",
-  "short_name": "Tulltabell",
+  "name": "TallSkalle",
+  "short_name": "TallSkalle",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#111827",
